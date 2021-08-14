@@ -2,6 +2,7 @@
 /* eslint-disable indent */
 /* eslint-disable no-trailing-spaces */
 import React from 'react';
+import '../assets/styles/components/Header.scss';
 
 const Header = () => {
     return (
