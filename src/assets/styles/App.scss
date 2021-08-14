@@ -7,3 +7,8 @@ body {
 * {
     box-sizing: border-box;
 }
+
+/* para quitar todos los scrolls
+::-webkit-scrollbar {
+    display: none;
+  } */
