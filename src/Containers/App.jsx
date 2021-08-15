@@ -45,8 +45,9 @@ const App = () => {
         <Categories title='Originales de platzi video'>
           <Carousel>
             <CarouselItem />
-            <CarouselItem />
-            <CarouselItem />
+            {videos.originals.map((item) => (
+              <CarouselItem key={item.id} {...item} />
+              ))}
           </Carousel>
         </Categories>
         <Footer />
