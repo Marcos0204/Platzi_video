@@ -5,16 +5,20 @@ import Home from '../Containers/Home';
 import Login from '../Containers/Login';
 import Register from '../Containers/Register';
 import NotFound from '../Containers/NotFound';
+import Layout from '../components/Layout';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route component={NotFound} />
-      </Switch>
+      <Layout>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route component={NotFound} />
+        </Switch>
+      </Layout>
+
     </BrowserRouter>
   );
 };
