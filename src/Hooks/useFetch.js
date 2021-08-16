@@ -2,8 +2,8 @@
 import React from 'react';
 
 const useFetch = (API) => (
-  fetch(API)
+  fetch('http://localhost:3000/initalState')
     .then((response) => response.json())
-    .then((data) => setVideos(data))
+    .then((data) => (data))
 );
 export default useFetch;
