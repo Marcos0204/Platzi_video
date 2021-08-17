@@ -168,7 +168,6 @@ const initialState = {
 };
 
 const HomeReducer = (state = initialState, action) => {
-
   return state;
 
 };

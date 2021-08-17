@@ -4,12 +4,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import '../assets/styles/components/Login.scss';
 import twitterIcon from '../assets/static/google-icon.png';
 import googleIcon from '../assets/static/google-icon.png';
+import { loginRequest } from '../Action/LoginAction';
 
-const Login = () => {
+const Login = ({ loginRequest, history }) => {
 
   const [form, setValues] = useState({
     imail: '',
@@ -21,12 +23,20 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const hanledSubmit = (e) => {
+    e.preventDefault();
+    loginRequest(form);
+    history.push('/')
+  };
 
   return (
     <section className='login'>
       <section className='login__container'>
         <h2>Inicia sesión</h2>
-        <form className='login__container--form'>
+        <form
+          onSubmit={hanledSubmit}
+          className='login__container--form'
+        >
           <input
             name='imail'
             className='input'
@@ -41,7 +51,12 @@ const Login = () => {
             placeholder='Contraseña'
             onChange={hanledInput}
           />
-          <button className='button'>Iniciar sesión</button>
+          <button
+            className='button'
+            type='submit'
+          >
+            Iniciar sesión
+          </button>
           <div className='login__container--remember-me'>
             <label>
               <input type='checkbox' id='cbox1' value='first_checkbox' />
@@ -74,4 +89,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = ({ myList }) => (myList);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginRequest: (payload) => dispatch(loginRequest(payload)),
+
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
