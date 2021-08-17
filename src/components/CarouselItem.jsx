@@ -1,26 +1,51 @@
 /* eslint-disable react/no-typos */
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setFavorite } from '../Action/HomeAction';
 import '../assets/styles/components/CarouselItem.scss';
 import playIcon from '../assets/static/play-icon.png';
 import plusIcon from '../assets/static/plus-icon.png';
 
-const CarouselItem = ({ cover, title, year, contentRating, duration }) => (
-  <div className='carousel-item'>
-    <img className='carousel-item__img' src={cover} alt={title} />
-    <div className='carousel-item__details'>
-      <div>
-        <img className='carousel-item__details--img' src={playIcon} alt='Play Icon' />
-        <img className='carousel-item__details--img' src={plusIcon} alt='Plus Icon' />
-      </div>
-      <p className='carousel-item__details--title'>{title}</p>
-      <p className='carousel-item__details--subtitle'>
-        {`${year} ${contentRating} ${duration} minutos`}
-      </p>
-    </div>
-  </div>
-);
+const CarouselItem = ({ cover,
+  title,
+  year,
+  contentRating,
+  duration,
+  id,
+  setFavorite,
+}) => {
 
+  const hanledSetFavorite = () => (
+    setFavorite({
+      cover, title, year, contentRating, duration,
+    })
+  );
+  return (
+    <div className='carousel-item'>
+      <img className='carousel-item__img' src={cover} alt={title} />
+      <div className='carousel-item__details'>
+        <div>
+          <img
+            className='carousel-item__details--img'
+            src={playIcon}
+            alt='Play Icon'
+          />
+          <img
+            className='carousel-item__details--img'
+            src={plusIcon}
+            alt='Plus Icon'
+            onClick={hanledSetFavorite}
+          />
+        </div>
+        <p className='carousel-item__details--title'>{title}</p>
+        <p className='carousel-item__details--subtitle'>
+          {`${year} ${contentRating} ${duration} minutos`}
+        </p>
+      </div>
+    </div>
+  );
+};
 CarouselItem.propTypes = {
   cover: PropTypes.string,
   title: PropTypes.string,
@@ -29,4 +54,10 @@ CarouselItem.propTypes = {
   duration: PropTypes.number,
 };
 
-export default CarouselItem;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setFavorite: (payload) => dispatch(setFavorite(payload)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CarouselItem);

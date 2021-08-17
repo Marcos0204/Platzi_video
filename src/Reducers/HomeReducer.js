@@ -1,8 +1,9 @@
+
 const initialState = {
   'user': {},
   'playing': {},
   'initialState': {
-    'mylist': [],
+    mylist: [],
     'trends': [
       {
         'id': 2,
@@ -167,7 +168,9 @@ const initialState = {
 };
 
 const HomeReducer = (state = initialState, action) => {
+
   return state;
+
 };
 
 export default HomeReducer;

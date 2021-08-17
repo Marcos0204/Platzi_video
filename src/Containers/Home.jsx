@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable indent */
@@ -15,17 +16,18 @@ const Home = ({ mylist, originals, trends }) => {
       <>
         <Search />
 
-        { mylist > 0 && (
+        { mylist.length > 0 && (
           <Categories title='Mi lista'>
             <Carousel>
-              <CarouselItem />
+              {mylist.map((item, index) => (
+                <CarouselItem key={index} {...item} />
+            ))}
             </Carousel>
           </Categories>
 
         )}
         <Categories title='Tendencias'>
           <Carousel>
-            <CarouselItem />
             {trends.map((item) => (
               <CarouselItem key={item.id} {...item} />
             ))}
@@ -33,7 +35,6 @@ const Home = ({ mylist, originals, trends }) => {
         </Categories>
         <Categories title='Originales de platzi video'>
           <Carousel>
-            <CarouselItem />
             {originals.map((item) => (
               <CarouselItem key={item.id} {...item} />
               ))}
@@ -43,10 +44,11 @@ const Home = ({ mylist, originals, trends }) => {
     );
 };
 
-const mapSateToProps = ({ HomeReducer }) => {
-  return { mylist: HomeReducer.initialState.mylist,
+const mapStateToProps = ({ HomeReducer, myList }) => {
+  return { mylist: myList.mylist,
     originals: HomeReducer.initialState.originals,
     trends: HomeReducer.initialState.trends,
   };
 };
-export default connect(mapSateToProps, null)(Home);
+
+export default connect(mapStateToProps)(Home);
