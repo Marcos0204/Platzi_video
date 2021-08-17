@@ -1,5 +1,8 @@
 /* eslint-disable no-case-declarations */
-import { SET_FAVORITE, DELETE_FAVORITE, LOGIN_USER } from '../Action/Types';
+import { SET_FAVORITE,
+  DELETE_FAVORITE,
+  LOGIN_USER,
+  LOGOUT_REQUES } from '../Action/Types';
 
 const initialState = {
   mylist: [],
@@ -27,7 +30,11 @@ const myList = (state = initialState, action) => {
         ...state,
         users: [action.payload],
       };
-
+    case LOGOUT_REQUES:
+      return {
+        ...state,
+        users: [],
+      };
     default:
       return state;
   }

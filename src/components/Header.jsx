@@ -15,7 +15,7 @@ const Header = ({ user, LogoutRequest }) => {
   const hasUser = Object.keys(user).length > 1;
   
   const hanledLogout = () => {
-    LogoutRequest();
+    LogoutRequest({});
   };
     return (
       <header className="header">
