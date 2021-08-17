@@ -10,13 +10,14 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 
-const Home = ({ mylist, originals, trends }) => {
+const Home = (props) => {
 
+    const { mylist, originals, trends } = props;
     return (
       <>
         <Search />
 
-        { mylist.length > 0 && (
+        {props && mylist.length > 0 && (
           <Categories title='Mi lista'>
             <Carousel>
               {mylist.map((item, index) => (
