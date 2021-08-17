@@ -17,6 +17,7 @@ const CarouselItem = (props) => {
     id,
     setFavorite,
     deleteFavorite,
+    isList,
   } = props;
   const hanledSetFavorite = () => (
     setFavorite({
@@ -36,18 +37,25 @@ const CarouselItem = (props) => {
             src={playIcon}
             alt='Play Icon'
           />
-          <img
-            className='carousel-item__details--img'
-            src={plusIcon}
-            alt='Plus Icon'
-            onClick={hanledSetFavorite}
-          />
-          <img
-            className='carousel-item__details--img'
-            src={removeIcon}
-            alt='Plus Icon'
-            onClick={() => hanledDeleteFavorite(id)}
-          />
+          {
+            isList ?
+              (
+                <img
+                  className='carousel-item__details--img'
+                  src={removeIcon}
+                  alt='Plus Icon'
+                  onClick={() => hanledDeleteFavorite(id)}
+                />
+              ) : (
+                <img
+                  className='carousel-item__details--img'
+                  src={plusIcon}
+                  alt='Plus Icon'
+                  onClick={hanledSetFavorite}
+                />
+              )
+          }
+
         </div>
         <p className='carousel-item__details--title'>{title}</p>
         <p className='carousel-item__details--subtitle'>

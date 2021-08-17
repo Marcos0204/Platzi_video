@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import { SET_FAVORITE, DELETE_FAVORITE } from '../Action/Types';
 
 const initialState = {
@@ -7,6 +8,9 @@ const initialState = {
 const myList = (state = initialState, action) => {
   switch (action.type) {
     case SET_FAVORITE:
+      const exist = state.mylist.find((item) => item.id === action.payload.id);
+      if (exist) return { ...state };
+
       return {
         mylist: [...state.mylist, action.payload],
       };

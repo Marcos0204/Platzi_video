@@ -21,7 +21,11 @@ const Home = (props) => {
           <Categories title='Mi lista'>
             <Carousel>
               {mylist.map((item, index) => (
-                <CarouselItem key={index} {...item} />
+                <CarouselItem
+                  key={index}
+                  {...item}
+                  isList
+                />
             ))}
             </Carousel>
           </Categories>
