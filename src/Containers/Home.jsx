@@ -1,44 +1,46 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable indent */
 import React from 'react';
+import { connect } from 'react-redux';
 import '../assets/styles/App.scss';
 import Search from '../components/Search';
 import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
-import useInitialState from '../Hooks/useInitialState';
 
-const API = 'http://localhost:3000/initalState';
+const Home = (props) => {
 
-const Home = () => {
-
-    const initialState = useInitialState(API);
-    console.log(initialState);
-
+    const { mylist, originals, trends } = props;
     return (
       <>
         <Search />
 
-        { initialState.mylist > 0 && (
+        {props && mylist.length > 0 && (
           <Categories title='Mi lista'>
             <Carousel>
-              <CarouselItem />
+              {mylist.map((item, index) => (
+                <CarouselItem
+                  key={index}
+                  {...item}
+                  isList
+                />
+            ))}
             </Carousel>
           </Categories>
 
         )}
         <Categories title='Tendencias'>
           <Carousel>
-            <CarouselItem />
-            {initialState.trends.map((item) => (
+            {trends.map((item) => (
               <CarouselItem key={item.id} {...item} />
             ))}
           </Carousel>
         </Categories>
         <Categories title='Originales de platzi video'>
           <Carousel>
-            <CarouselItem />
-            {initialState.originals.map((item) => (
+            {originals.map((item) => (
               <CarouselItem key={item.id} {...item} />
               ))}
           </Carousel>
@@ -47,4 +49,11 @@ const Home = () => {
     );
 };
 
-export default Home;
+const mapStateToProps = ({ HomeReducer, myList }) => {
+  return { mylist: myList.mylist,
+    originals: HomeReducer.initialState.originals,
+    trends: HomeReducer.initialState.trends,
+  };
+};
+
+export default connect(mapStateToProps)(Home);
