@@ -6,6 +6,7 @@ import Login from '../Containers/Login';
 import Register from '../Containers/Register';
 import NotFound from '../Containers/NotFound';
 import Layout from '../components/Layout';
+import Players from '../Containers/Players';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
+          <Route exact path='/players/:id' component={Players} />
           <Route component={NotFound} />
         </Switch>
       </Layout>
