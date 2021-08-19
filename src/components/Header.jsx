@@ -1,24 +1,30 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable jsx-quotes */
 /* eslint-disable indent */
 /* eslint-disable no-trailing-spaces */
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import '../assets/styles/components/Header.scss';
 import logo from '../assets/static/logo-platzi-video-BW2.png';
 import userIcon from '../assets/static/user-icon.png';
 import gravatar from '../utils/Gravatar';
 import { LogoutRequest } from '../Action/LoginAction';
 
-const Header = ({ user, LogoutRequest }) => {
-  //<img src={gravatar(user.imail)} alt={user.imail} />
+const Header = ({ user, LogoutRequest, isLogin, isRegister }) => {
+
   const hasUser = Object.keys(user).length > 1;
   
   const hanledLogout = () => {
     LogoutRequest({});
   };
+  const headerclass = classNames('header', {
+    isLogin,
+    isRegister,
+  });
     return (
-      <header className="header">
+      <header className={headerclass}>
         <Link to='/'>
           <img className="header__img" src={logo} alt="Platzi Video" />
         </Link>
