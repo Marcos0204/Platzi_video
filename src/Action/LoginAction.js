@@ -10,19 +10,18 @@ export const loginRequest = (payload) => {
 };
 
 export const LogoutRequest = (payload) => ({
-   
+
   type: LOGOUT_REQUES,
   payload,
 });
 
-
 export const getVideoSource = (id) => {
-  const {originals, trends} = store.getState().HomeReducer.initialState;
+  const { originals, trends } = store.getState().HomeReducer.initialState;
   const list = [...originals, ...trends];
-  const objectVideo= list.find(item => item.id === Number(id))
+  const objectVideo = list.find((item) => item.id === Number(id));
 
   return ({
-  type: GET_VIDEO_SOURCE,
-  payload:objectVideo
-});
-}
+    type: GET_VIDEO_SOURCE,
+    payload: objectVideo,
+  });
+};

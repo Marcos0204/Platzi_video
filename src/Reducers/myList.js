@@ -3,13 +3,13 @@ import { SET_FAVORITE,
   DELETE_FAVORITE,
   LOGIN_USER,
   LOGOUT_REQUES,
-  GET_VIDEO_SOURCE
-  } from '../Action/Types';
+  GET_VIDEO_SOURCE,
+} from '../Action/Types';
 
 const initialState = {
   mylist: [],
   users: [],
-  playing:{}
+  playing: {},
 };
 
 const myList = (state = initialState, action) => {
@@ -38,11 +38,11 @@ const myList = (state = initialState, action) => {
         ...state,
         users: [],
       };
-    case GET_VIDEO_SOURCE :
-    return{
-      ...state,
-      playing:action.payload
-    }
+    case GET_VIDEO_SOURCE:
+      return {
+        ...state,
+        playing: action.payload,
+      };
     default:
       return state;
   }
