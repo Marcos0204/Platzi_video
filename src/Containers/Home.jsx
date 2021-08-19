@@ -17,7 +17,7 @@ const Home = (props) => {
     return (
       <>
         <Header />
-        <Search />
+        <Search isHome />
 
         {props && mylist.length > 0 && (
           <Categories title='Mi lista'>
